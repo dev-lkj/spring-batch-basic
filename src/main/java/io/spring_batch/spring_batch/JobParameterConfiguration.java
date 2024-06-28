@@ -2,6 +2,7 @@ package io.spring_batch.spring_batch;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -14,9 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.Map;
+
 //@Configuration
 @RequiredArgsConstructor
-public class JobInstanceConfiguration {
+public class JobParameterConfiguration {
 
     @Bean
     public Job job(JobRepository jobRepository, Step step1, Step step2){
@@ -32,8 +35,18 @@ public class JobInstanceConfiguration {
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+
+                        JobParameters jobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
+                        jobParameters.getString("name");
+                        jobParameters.getLong("seq");
+                        jobParameters.getDate("date");
+                        jobParameters.getDouble("age");
+
+                        Map<String, Object> jobParameters1 = chunkContext.getStepContext().getJobParameters();
+
+
                         System.out.println(" ========================== ");
-                        System.out.println(" >> step1 was executed");
+                        System.out.println(" >> step1 has executed");
                         System.out.println(" ========================== ");
                         return RepeatStatus.FINISHED;
                     }
@@ -48,7 +61,7 @@ public class JobInstanceConfiguration {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                         System.out.println(" ========================== ");
-                        System.out.println(" >> step2 was executed!!");
+                        System.out.println(" >> step2 has executed!!");
                         System.out.println(" ========================== ");
                         return RepeatStatus.FINISHED;
                     }
