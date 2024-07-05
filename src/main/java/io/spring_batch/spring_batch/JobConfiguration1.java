@@ -11,12 +11,11 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 //@Configuration
 @RequiredArgsConstructor
-public class JobConfiguration {
+public class JobConfiguration1 {
 
     @Bean
     public Job job(JobRepository jobRepository, Step step1, Step step2){

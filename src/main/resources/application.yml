@@ -2,6 +2,8 @@ spring:
   profiles:
     active: local
   application: name=spring-batch
+#  batch:
+
 
 ---
 spring:
@@ -14,6 +16,13 @@ spring:
       username: sa
       password:
       driver-class-name: org.h2.Driver
+  batch:
+    job:
+      name: ${job.name:NONE}
+      enabled : true
+    jdbc:
+      initialize-schema: always
+      table-prefix: SYSTEM_
 
 ---
 spring:

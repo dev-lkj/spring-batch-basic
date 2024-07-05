@@ -5,7 +5,7 @@ import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
-@Configuration
+//@Configuration
 public class JobRepositoryConfiguration {
 
     private final JobExecutionListener jobExecutionListener;

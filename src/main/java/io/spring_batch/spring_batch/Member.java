@@ -1,2 +1,8 @@
-package io.spring_batch.spring_batch;public class Member {
+package io.spring_batch.spring_batch;
+
+import lombok.Data;
+
+@Data
+public class Member {
+    private String id;
 }

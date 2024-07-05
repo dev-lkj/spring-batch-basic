@@ -17,10 +17,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @RequiredArgsConstructor
 @Configuration
-public class JobLauncherConfigration {
+public class JobConfigration {
 
     @Bean
-    public Job BarchJob(JobRepository jobRepository, Step step1, Step step2){
+    public Job BatchJob1(JobRepository jobRepository, Step step1, Step step2){
         return new JobBuilder("Job", jobRepository)
                 .start(step1)
                 .next(step2)
